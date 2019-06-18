@@ -1,10 +1,7 @@
+import { hot } from 'react-hot-loader'
 import React from 'react'
 import createReactClass from 'create-react-class'
 
-const Title = createReactClass({
-  render: function() {
-    return <h1>Title</h1>
-  }
-})
+const App = () => <div>Hello World!</div>;
 
-export default Title
+export default hot(module)(App)
