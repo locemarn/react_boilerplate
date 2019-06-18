@@ -6,7 +6,7 @@ import App from './app'
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <App />     
+      <App />
     </AppContainer>,
     document.querySelector('[data-js="app"]')
   )
@@ -17,6 +17,5 @@ render(App)
 if (module.hot) {
   module.hot.accept('./app', () => {
     render(App)
-    render(require('./app')).default
   })
 }
