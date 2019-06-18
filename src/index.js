@@ -3,6 +3,6 @@ import React from 'react'
 import { render } from 'react-dom'
 
 render(
-  React.createElement(Title),
-  document.querySelector('[data-js="app"')
+  <Title />,
+  document.querySelector('[data-js="app"]')
 )

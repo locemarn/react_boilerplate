@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class'
 
 const Title = createReactClass({
   render: function() {
-    return React.createElement('h1', null, 'Title')
+    return <h1>Title</h1>
   }
 })
 
