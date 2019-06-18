@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 const HtmlPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -26,6 +27,9 @@ module.exports = {
     new HtmlPlugin({
       title: 'App',
       publicPath: path.join(__dirname, 'src', 'html', 'template.html')
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name]-[hash].css'
     })
   ],
 
@@ -53,7 +57,16 @@ module.exports = {
         test: /\.cass$/,
         exclude: /node_modules/,
         include: /src/,
-        use: [{ loader: 'style-loader' }, { loader: 'raw-loader' }]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development'
+            }
+          },
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   }
