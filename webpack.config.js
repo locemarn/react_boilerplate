@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
 
   devtool: 'source-map',
 
@@ -19,9 +19,7 @@ module.exports = {
     publicPath: '/static/'
   },
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 
   module: {
     rules: [
@@ -30,7 +28,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         include: /src/,
-        loader: 'standard-loader'
+        loader: 'eslint-loader'
       },
       {
         test: /\.js$/,
