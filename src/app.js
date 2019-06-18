@@ -1,10 +1,10 @@
-var React = require('react')
-var createReactClass = require('create-react-class')
+import React from 'react'
+import createReactClass from 'create-react-class'
 
-var Title = createReactClass({
+const Title = createReactClass({
   render: function() {
     return React.createElement('h1', null, 'Title')
   }
 })
 
-module.exports = Title
+export default Title

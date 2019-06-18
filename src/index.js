@@ -1,8 +1,8 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var Title = require('./app')
+import Title from './app'
+import React from 'react'
+import { render } from 'react-dom'
 
-ReactDOM.render(
+render(
   React.createElement(Title),
   document.querySelector('[data-js="app"')
 )
