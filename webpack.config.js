@@ -40,6 +40,12 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.cass$/,
+        exclude: /node_modules/,
+        include: /src/,
+        use: [{ loader: 'style-loader' }, { loader: 'raw-loader' }]
       }
     ]
   }
