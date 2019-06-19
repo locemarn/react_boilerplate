@@ -3,7 +3,8 @@
     "start": "webpack-dashboard -- node server.js",
     "build": "cross-env NODE_ENV=production ./node_modules/webpack/bin/webpack.js --progress --config webpack.prod.config -p",
     "lint": "./node_modules/.bin/eslint server.js && ./node_modules/.bin/eslint src/**/*.js",
-    "lint:fix": "./node_modules/.bin/prettier-eslint 'server.js' --write && ./node_modules/.bin/prettier-eslint 'src/**/*.js' --write && ./node_modules/.bin/prettier-eslint 'test/**/*.js' --write"
+    "lint:fix": "./node_modules/.bin/prettier-eslint 'server.js' --write && ./node_modules/.bin/prettier-eslint 'src/**/*.js' --write && ./node_modules/.bin/prettier-eslint 'test/**/*.js' --write",
+    "storybook": "start-storybook"
   },
   "husky": {
     "hooks": {
@@ -22,6 +23,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
+    "@storybook/react": "^5.1.8",
     "babel-loader": "^8.0.6",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
