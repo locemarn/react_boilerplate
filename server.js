@@ -8,6 +8,7 @@ new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,
+  overlay: true,
   stats: { colors: true }
 }).listen(port, err => {
   if (err) {
