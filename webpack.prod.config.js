@@ -3,38 +3,35 @@ const webpack = require('webpack')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const DashboardPlugin = require('webpack-dashboard/plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
 
-  devtool: 'source-map',
-
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    path.join(__dirname, 'src', 'index')
-  ],
+  entry: path.join(__dirname, 'src', 'index'),
 
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name]-[hash].js',
-    publicPath: ''
+    filename: '[name]-[hash].js'
+  },
+
+  optimization: {
+    minimizer: [new UglifyJsPlugin()]
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-
-    new DashboardPlugin(),
-
+    new MiniCssExtractPlugin({
+      filename: '[name]-[hash].css'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlPlugin({
       title: 'App',
       publicPath: path.join(__dirname, 'src', 'html', 'template.html')
-    }),
-
-    new MiniCssExtractPlugin({
-      filename: '[name]-[hash].css'
     })
   ],
 
@@ -62,7 +59,13 @@ module.exports = {
         test: /\.cass$/,
         exclude: /node_modules/,
         include: /src/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   }
