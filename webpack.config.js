@@ -3,6 +3,7 @@ const webpack = require('webpack')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 module.exports = {
   mode: 'development',
@@ -24,10 +25,14 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+
+    new DashboardPlugin(),
+
     new HtmlPlugin({
       title: 'App',
       publicPath: path.join(__dirname, 'src', 'html', 'template.html')
     }),
+
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css'
     })
