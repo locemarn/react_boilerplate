@@ -1,9 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const HtmlPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -15,23 +14,26 @@ module.exports = {
     filename: '[name]-[hash].js'
   },
 
-  optimization: {
-    minimizer: [new UglifyJsPlugin()]
-  },
-
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name]-[hash].css'
+      filename: '[name]-[hash].css',
+      chunkFilename: '[id].css'
     }),
+
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify('5fa3b9'),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: '1+1',
+      'typeof window': JSON.stringify('object'),
+      'process.env.NODE_ENV': JSON.stringify('process.env.NODE_ENV')
     }),
+
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new HtmlPlugin({
+
+    new HtmlWebpackPlugin({
       title: 'App',
-      publicPath: path.join(__dirname, 'src', 'html', 'template.html')
+      template: path.join(__dirname, 'src', 'html', 'template.html')
     })
   ],
 
@@ -56,14 +58,13 @@ module.exports = {
         }
       },
       {
-        test: /\.cass$/,
+        test: /\.css$/,
         exclude: /node_modules/,
         include: /src/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader
           },
-          'style-loader',
           'css-loader'
         ]
       }
