@@ -4,7 +4,8 @@
     "build": "cross-env NODE_ENV=production ./node_modules/webpack/bin/webpack.js --progress --config webpack.prod.config -p",
     "lint": "./node_modules/.bin/eslint server.js && ./node_modules/.bin/eslint src/**/*.js",
     "lint:fix": "./node_modules/.bin/prettier-eslint 'server.js' --write && ./node_modules/.bin/prettier-eslint 'src/**/*.js' --write && ./node_modules/.bin/prettier-eslint 'test/**/*.js' --write",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "test": "jest --coverage --no-cache"
   },
   "husky": {
     "hooks": {
@@ -31,6 +32,7 @@
     "eslint-config-standard": "^12.0.0",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-react": "^7.13.0",
@@ -38,6 +40,7 @@
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^2.4.1",
+    "jest": "^24.8.0",
     "lint-staged": "^8.2.1",
     "mini-css-extract-plugin": "^0.7.0",
     "prettier-eslint": "^9.0.0",
